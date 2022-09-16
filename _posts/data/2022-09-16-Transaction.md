@@ -19,23 +19,23 @@ tags:
 
 ### 트랜잭션의 ACID
 1. 원자성<br>
-트랜잭션 내에서 실행한 작업들은 마치 하나의 작업인 것처럼 모두 성공하거나 모두 실패해야 한다.
+   트랜잭션 내에서 실행한 작업들은 마치 하나의 작업인 것처럼 모두 성공하거나 모두 실패해야 한다.
 2. 일관성<br>
-모든 트랜잭션은 일관성 있는 데이터베이스 상태를 유지해야 한다.
+   모든 트랜잭션은 일관성 있는 데이터베이스 상태를 유지해야 한다.
 3. 격리성<br>
-동시에 실행되는 트랜잭션들이 서로에게 영향을 미치지 않도록 격리한다.<br>
-transaction의 isolation level을 생각하면 된다.<br>
+   동시에 실행되는 트랜잭션들이 서로에게 영향을 미치지 않도록 격리한다.<br>
+   transaction의 isolation level을 생각하면 된다.<br>
 
-> ### 트랜잭션 격리 수준 (Isolation level) 
-> - READ UNCOMMITED(커밋되지 않은 읽기) 
-> - READ COMMITTED(커밋된 읽기) 
-> - REPEATABLE READ(반복 가능한 읽기) 
+> ### 트랜잭션 격리 수준 (Isolation level)
+> - READ UNCOMMITED(커밋되지 않은 읽기)
+> - READ COMMITTED(커밋된 읽기)
+> - REPEATABLE READ(반복 가능한 읽기)
 > - SERIALIZABLE(직렬화 가능)
 
 참고로 JPA에서는 데이터베이스에 관계없이 1차캐시(영속성 컨텍스트)를 이용, Repeatable Read를 지원한다.
 4. 지속성<br>
-트랜잭션을 성공적으로 끝내면 그 결과가 항상 기록되어야 한다. 중각에 시스템에 문제가 발생해도 데이터베이스 로그 등을
-사용 해서 성공한 트랜잭션 내용을 복구해야한다.
+   트랜잭션을 성공적으로 끝내면 그 결과가 항상 기록되어야 한다. 중각에 시스템에 문제가 발생해도 데이터베이스 로그 등을
+   사용 해서 성공한 트랜잭션 내용을 복구해야한다.
 
 ### 들어가기전...
 DataBase의 세션 개념을 알아갈 필요가 있다.
@@ -43,10 +43,10 @@ DataBase의 세션 개념을 알아갈 필요가 있다.
 2. 커넥션을 통한 모든 요청은 각 세션을 통해서 실행된다.
 3. 세션은 트랜잭션을 시작하고 커밋 또는 롤백을 통해 트랜잭션을 종료한다.
 4. 여기서 세션별로 다시 테이블을 가진다고 생각하면 편하다. (트랜잭션 격리를 위함)<br>
-쉽게 말하자면 2개의 세션이 있다고 가정했을 때 한쪽 세션에서 트랜잭션 시작후 insert, update, delete를 한다고 해서
-다른 세션에서 그 결과를 볼 수 있는 것이 아니다. commit을 해야 보인다.
+   쉽게 말하자면 2개의 세션이 있다고 가정했을 때 한쪽 세션에서 트랜잭션 시작후 insert, update, delete를 한다고 해서
+   다른 세션에서 그 결과를 볼 수 있는 것이 아니다. commit을 해야 보인다.
 
-![img.png](img.png)
+![img](https://user-images.githubusercontent.com/69373314/190559348-1ef9b990-29e6-4d7f-b232-f1f62b2e63cf.png)
 
 ### 🤣 락의 필요성 등장
 기본적으로 대부분의 데이터베이스들은 select 시점에 commit 된 결과를 가져오는 READ COMMITTED 이상의 트랜잭션 레벨과
@@ -305,7 +305,7 @@ public class MemberService {
 1. 같은 트랜잭션 유지를 유해 같은 커넥션을 사용해야한다.
 2. 서비스 계층에서 커넥션을 만들고, 끝날때 트랜잭션을 커밋하고 커넥션을 종료해야한다.
 
-![img_1.png](img_1.png)
+![img_1](https://user-images.githubusercontent.com/69373314/190559363-4ed732fe-5c58-40fd-842a-eb422575b964.png)
 
 핵심들은 같은 커넥션을 유지하기 위해서 service에서 repository 쪽으로 connection을 전달해야하며
 service 계층에서 커넥션을 얻고 commit 혹은 rollback 하는 과정이 매우 겹친다고 볼 수 있다.
@@ -315,27 +315,27 @@ service 계층에서 커넥션을 얻고 commit 혹은 rollback 하는 과정이
 
 ## 문제점
 1. 서비스 계층은 특정 기술에 의존하지 않고 순수 java 코드로 작성하는 편이 좋다<br>
-현재 서비스 계층은 jdbc를 의존하고 있다.
+   현재 서비스 계층은 jdbc를 의존하고 있다.
    * SQLException
    * DataSource
    * Connection
 
 
 2. 트랜잭션을 사용하기 위해서 jdbc 기술에 의존 하게 된다. jdbc는 데이터 접근 기술 중 하나임을
-잊지 말자(물론 모든 db 접근 기술들은 jdbc를 내부적으로 사용하고 있다.) jdbc 에서는 connection을 통해
-setAutoCommit으로 트랜잭션을 열고 commit, rollback 으로 트랜잭션을 닫는다.
+   잊지 말자(물론 모든 db 접근 기술들은 jdbc를 내부적으로 사용하고 있다.) jdbc 에서는 connection을 통해
+   setAutoCommit으로 트랜잭션을 열고 commit, rollback 으로 트랜잭션을 닫는다.
 
 
 3. 2번의 이유로 서비스에서 특정 계층을 의존하고 있으므로 JDBC에서 JPA 같은 기술로 바꾸어
-사용하게 되면 서비스 코드 또한 고쳐져야한다.
+   사용하게 되면 서비스 코드 또한 고쳐져야한다.
 
 ### 문제점 정리
 1. jdbc 구현 기술이 서비스 계층에 누수 되었다.
    * 트랜잭션을 적용하기 위해 jdbc 구현 기술이 서비스 계층에 누수
    * 서비스 계층은 순수 java 코드로 만들고 특정 기술에 의존하는 행위들은 모두 spring에서는
-   component 로 관리하거나 따로 Class로 관리하는 것이 좋다.
-     * 물론 따로 빼놔도 Transaction을 적용하게 될 경우 같은 Connection 즉, 같은 세션을
-       유지하기 위해서 jdbc connection을 사용하면서 service가 특정 계층을 의존하게 되었다.
+     component 로 관리하거나 따로 Class로 관리하는 것이 좋다.
+      * 물론 따로 빼놔도 Transaction을 적용하게 될 경우 같은 Connection 즉, 같은 세션을
+        유지하기 위해서 jdbc connection을 사용하면서 service가 특정 계층을 의존하게 되었다.
 
 
 2. 트랜잭션 동기화 문제
@@ -348,7 +348,7 @@ setAutoCommit으로 트랜잭션을 열고 commit, rollback 으로 트랜잭션�
 
 ## 🤔 데이터 접근 기술 추상화
 특정기술에 의존하지 않기 위해서 결국 interface를 통한 추상화가 필요하다.<br>
-이전에 배웠던, 커넥션 풀과 DriverManger를 추상하기 위한 DataSource interface나 
+이전에 배웠던, 커넥션 풀과 DriverManger를 추상하기 위한 DataSource interface나
 다양한 db Driver를 관리하는 DriverManger 들이 그러하다.
 
 데이터 접근 기술에 따라서 트랜잭션을 시작하는 방식이 모두 다르다.<br>
@@ -368,9 +368,9 @@ repo 계층의 의존성을 줄인 것이지 interface 를 구현하고 있는 �
 따라서 Transaction 자체를 추상화할 필요가 있으며 jpa, jdbc, mybatis 같은 다양한
 데이터 접근 기술들에 대한 transaction 관리를 하나의 인터페이스로 적용 시켜야 한다.
 
-![img_2.png](img_2.png)
+![img_2](https://user-images.githubusercontent.com/69373314/190559469-0623a1e3-7051-4055-b445-74fd5cba8e27.png)
 
-spring은 각각 데이터 접근 기술에 대해 TransactionManager를 구상했고 스프링에서 
+spring은 각각 데이터 접근 기술에 대해 TransactionManager를 구상했고 스프링에서
 PlatformTransactionManager interface를 통해 각각의 데이터 접근 기술들의 transaction
 을 관리한다.
 
@@ -393,8 +393,8 @@ getTransaction은 이미 시작한 Transaction이 존재할 경우 같은 트랜
 스프링이 제공하는 interface은 크게 2가지 역할을 한다.
 * 트랜잭션 추상화
 * 리소스 동기화 (같은 트랜잭션 유지)<br>
-같은 트랜잭션을 유지하기 위해 (즉, 같은 커넥션을 사용하기 위해) 파라미터로 커넥션을 전달 했는데 이제 로컬 스레드를 
-사용하여 파라미터로 넘기지 않아도 된다.<br>
+  같은 트랜잭션을 유지하기 위해 (즉, 같은 커넥션을 사용하기 위해) 파라미터로 커넥션을 전달 했는데 이제 로컬 스레드를
+  사용하여 파라미터로 넘기지 않아도 된다.<br>
 
 🤔 로컬 스레드 - 스레드 별로 임시저장소를 가진다고 생각하면 편하다. 단, thread pool 을 사용하는 상황일경우
 주의해서 다뤄야한다.
@@ -402,10 +402,10 @@ getTransaction은 이미 시작한 Transaction이 존재할 경우 같은 트랜
 스프링은 트랜잭션 동기화를 위한 별도의 클래스를 제공한다. (같은 커넥션을 꺼내기 위해서)<br>
 org.springframework.transaction.support.TransactionSynchronizationManager
 
-![img_3.png](img_3.png)
+![img_3](https://user-images.githubusercontent.com/69373314/190559477-19624fe9-6a12-4850-9b27-bbbedae16209.png)
 
 동작 순서는 다음과 같다
-1. 트랜잭션 매니저는 DataSource를 통해 커넥션을 만들고 트랜잭션을 시작한다. 
+1. 트랜잭션 매니저는 DataSource를 통해 커넥션을 만들고 트랜잭션을 시작한다.
 2. 트랜잭션 매니저는 트랜잭션이 시작된 커넥션을 트랜잭션 동기화 매니저에 보관
 3. repo 계층은 트랜잭션 동기화 매니저에 보관된 커넥션을 꺼내서 사용한다.
 4. 트랜잭션이 종료되면 트랜잭션 매니저는 트랜잭션 동기화 매니저에 보관된 커넥션을 통해 트랜잭션을 종료, 리소르를 해제한다.
@@ -419,16 +419,16 @@ TransactionSynchronizationManager - 같은 커넥션 혹은 자원(EntityManager
 ### 현재까지의 문제점 정리
 목표 : Transaction 과 비지니스 로직의 분리
 1. 현재 jdbc 기술에 의존하고 있다. <br>
-=> 다른 db 접근 기술로 바뀌게 될경우 service 계층을 바꾸어야 한다.
+   => 다른 db 접근 기술로 바뀌게 될경우 service 계층을 바꾸어야 한다.
 
 
 2. db접근 기술들을 통합하려고 interface를 사용해도 service 단에서는 계속해서 Transaction 시작과 종료 코드가 드러난다.<br>
-추가적으로 여전히 dataSource를 repository 계층으로 파라미터로 넘겨서 같은 Connection 을 유지해야 한다.<br>
-(같은 Transaction 유지를 위함)
+   추가적으로 여전히 dataSource를 repository 계층으로 파라미터로 넘겨서 같은 Connection 을 유지해야 한다.<br>
+   (같은 Transaction 유지를 위함)
 
 
 3. 2번을 해결하기 위해서 repository에서 같은 Connection 사용을 위해 동기화 TransactionManager 적용이 필요하다.<br>
-서비스 계층에서는 PlatformTransactionManager를 사용하여 디비 접근 기술에 대한 의존성을 줄인다.
+   서비스 계층에서는 PlatformTransactionManager를 사용하여 디비 접근 기술에 대한 의존성을 줄인다.
 
 
 4. service 계층에서 반복적인 try - catch 및 반복성 있는 코드
@@ -566,15 +566,15 @@ public class MemberRepository {
 3. repository 는 같은 Service 메서드에 묶여있을 때 항상 같은 Connection 을 공유해야 한다.
 
 * 결국에 큰 틀은 변하지 않는다. 어떤 데이터 접근 기술을 써도 Connection 을 생성하기 위해 DataSource 가 필요하다.<br>
-DataSource는 DB 설정파일을 통해 관리한다. (물론 어떤 Connection 을 의존하느냐에 따라 추가적인 세팅은 필요할 것이다)<br>
+  DataSource는 DB 설정파일을 통해 관리한다. (물론 어떤 Connection 을 의존하느냐에 따라 추가적인 세팅은 필요할 것이다)<br>
 
 
 * Service 계층에서 트랜잭션을 시작하기 위해 Connection을 얻고 트랜잭션 매니저를 통해서 트랜잭션을 시작한다.<br>
-(Connection을 얻을때 DataSource를 통해 얻는다)<br>
+  (Connection을 얻을때 DataSource를 통해 얻는다)<br>
 
 
 * Repository 계층에서 같은 Connection을 사용하기 위해서 트랜잭션 동기화 매니저를 사용하며 마찬가지로 Connection을
-얻는 과정이기 때문에 dataSource를 필요로 한다.
+  얻는 과정이기 때문에 dataSource를 필요로 한다.
 
 
 ### 흐름 정리
@@ -587,13 +587,13 @@ DataSource는 DB 설정파일을 통해 관리한다. (물론 어떤 Connection 
 7. 각 repository 에 SQL 전달하여 소통
 8. 트랜잭션을 종료한다. commit or rollback
 9. 리소스를 정리한다
-    * Thead Local 정리
-    * setAutoCommit 정리
-    * 커넥션 종료 or 반납
+   * Thead Local 정리
+   * setAutoCommit 정리
+   * 커넥션 종료 or 반납
 
-![img_4.png](img_4.png)
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
+![img_4](https://user-images.githubusercontent.com/69373314/190559540-3f6a4fb7-24be-4d32-a744-7265a77cf657.png)
+![img_5](https://user-images.githubusercontent.com/69373314/190559546-14a5332c-a774-4d51-8eff-3dd74d8cddd9.png)
+![img_6](https://user-images.githubusercontent.com/69373314/190559551-5fbc4cd8-3092-4f3c-98ec-94af5e32c076.png)
 
 #### ✅ 현재까지의 해결
 1. 트랜잭션 추상화(interface + Local Thread) 를 사용하여 서비스 계층에서 JDBC 기술에 의존하지 않는다.
@@ -771,7 +771,7 @@ public class ProxyHandler implements InvocationHandler {
     }
 }
 ```
-대략 프록시는 대상(target) 의 기능외에 추가 할때 사용을 많이 하는데 마침 전후로 Transaction을 
+대략 프록시는 대상(target) 의 기능외에 추가 할때 사용을 많이 하는데 마침 전후로 Transaction을
 처리해야 하므로 프록시를 사용하기가 적절하다.<br>
 
 결국 @Transaction 어노테이션 하나만으로 관심사가 최종적으로 분리되었으며 service 계층은 db 접근 기술을
@@ -783,14 +783,14 @@ public class ProxyHandler implements InvocationHandler {
 > 포인트컷: TransactionAttributeSourcePointcut<br>
 > 어드바이스: TransactionInterceptor
 
-![img_7.png](img_7.png)
+![img_7](https://user-images.githubusercontent.com/69373314/190559559-f76a9cdc-aa81-4eb7-b00d-6624a6c77a1d.png)
 
 ## ✅ 리소스 관리하기
 결국 어플리케이션 레벨에서 관리해야 할 클래스는 크게 2가지 이다.
 1. dataSource
 2. TransactionManager
 3. TransactionSynchronizationManager => 하지만 개발자가 관리할 일은 없다 TransactionManager 가 동기화를 위해
-알아서 사용한다.
+   알아서 사용한다.
 
 스프링 부트는 autoConfiguration 으로 데이터소스와 라이브러리에 등록된 데이터 접근 기술을 사용하여 TransactionManager를
 자동으로 등록한다.
@@ -802,13 +802,13 @@ public class ProxyHandler implements InvocationHandler {
 public class Configure {
    @Bean
    DataSource dataSource() {
-       // 해당 dataSource 정보는 설정파일로 관리하여 env 로 뽑아내던, static 변수로 관리를 하던 한다.
-       return new DriverManagerDataSource(URL, USERNAME, PASSWORD);
+      // 해당 dataSource 정보는 설정파일로 관리하여 env 로 뽑아내던, static 변수로 관리를 하던 한다.
+      return new DriverManagerDataSource(URL, USERNAME, PASSWORD);
    }
 
    @Bean
    PlatformTransactionManager transactionManager() {
-       return new DataSourceTransactionManager(dataSource());
+      return new DataSourceTransactionManager(dataSource());
    }
 }
 ```
