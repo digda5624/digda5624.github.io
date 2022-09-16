@@ -5,6 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dc21354-0fb6-4741-9127-34d0d80d76cc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/2022-08-08-ddd.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/transaction/2022-09-16-Transaction.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/transaction/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/transaction/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/transaction/img_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/transaction/img_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/transaction/img_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/transaction/img_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/transaction/img_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/transaction/img_7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_pages/about.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sitemap.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,18 +41,41 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/hyeonseung-gu/blog",
+    "last_opened_file_path": "/Users/hyeonseung-gu/blog/_posts/transaction",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_posts/transaction" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_pages" />
+      <recent name="$PROJECT_DIR$/_posts" />
       <recent name="$PROJECT_DIR$" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="blog" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="blog" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -48,7 +85,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1659592320231</updated>
-      <workItem from="1659592321539" duration="12077000" />
+      <workItem from="1659592321539" duration="14380000" />
+      <workItem from="1659771027672" duration="7000" />
+      <workItem from="1659783399490" duration="542000" />
+      <workItem from="1659784026168" duration="4254000" />
+      <workItem from="1660577334637" duration="13000" />
+      <workItem from="1663293811041" duration="1146000" />
     </task>
     <servers />
   </component>
