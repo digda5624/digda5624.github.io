@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9dc21354-0fb6-4741-9127-34d0d80d76cc" name="Changes" comment="" />
+    <list default="true" id="9dc21354-0fb6-4741-9127-34d0d80d76cc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/_includes/archive-single2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_includes/archive-single3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_includes/nav_list_main" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_includes/post__taxonomy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_pages/cartegory-archive.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_pages/categories/category-spring.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_pages/tags-archive.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/_includes/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/data/2022-09-16-Transaction.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/data/2022-09-16-Transaction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,7 +38,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/hyeonseung-gu/blog/_posts/transaction",
+    "last_opened_file_path": "/Users/hyeonseung-gu/blog/_includes",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -38,6 +51,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_includes" />
+      <recent name="$PROJECT_DIR$/_pages" />
       <recent name="$PROJECT_DIR$/_posts/transaction" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -74,7 +89,8 @@
       <workItem from="1659783399490" duration="542000" />
       <workItem from="1659784026168" duration="4254000" />
       <workItem from="1660577334637" duration="13000" />
-      <workItem from="1663293811041" duration="2110000" />
+      <workItem from="1663293811041" duration="2891000" />
+      <workItem from="1663306318548" duration="3154000" />
     </task>
     <servers />
   </component>

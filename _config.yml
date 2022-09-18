@@ -293,6 +293,8 @@ defaults:
       comments: true
       share: true
       related: true
+      mathjax: true
+      sidebar_main: true
 
   # _pages                      : 해당 하단 영역이 새로 추가되었습니다.
   - scope:

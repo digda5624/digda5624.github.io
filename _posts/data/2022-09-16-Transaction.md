@@ -1,12 +1,12 @@
 ---
 title: "트랜잭션 알기"
 categories:
-- post/transaction
+- Spring 
 toc: true
 toc_sticky: true
 toc_label: "트랜잭션"
 tags:
-- Post Formats
+- [spring, jpa, database]
 ---
 
 # 🚀 트랜잭션
